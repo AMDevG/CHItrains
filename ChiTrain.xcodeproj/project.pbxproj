@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC51E44517700F0F617 /* AppDelegate.swift */; };
-		9E096CC81E44517700F0F617 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC71E44517700F0F617 /* ViewController.swift */; };
+		9E096CC81E44517700F0F617 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC71E44517700F0F617 /* LineViewController.swift */; };
 		9E096CCB1E44517700F0F617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CC91E44517700F0F617 /* Main.storyboard */; };
 		9E096CCE1E44517700F0F617 /* ChiTrain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CCC1E44517700F0F617 /* ChiTrain.xcdatamodeld */; };
 		9E096CD01E44517700F0F617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CCF1E44517700F0F617 /* Assets.xcassets */; };
 		9E096CD31E44517700F0F617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */; };
 		9E096CDE1E44517700F0F617 /* ChiTrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CDD1E44517700F0F617 /* ChiTrainTests.swift */; };
 		9E096CE91E44517700F0F617 /* ChiTrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */; };
+		9E72C8D21E4ECDE900B5A607 /* StopChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */; };
+		9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */; };
+		9E72C8D61E4EE2BB00B5A607 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,7 @@
 /* Begin PBXFileReference section */
 		9E096CC21E44517700F0F617 /* ChiTrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChiTrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CC51E44517700F0F617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E096CC71E44517700F0F617 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9E096CC71E44517700F0F617 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
 		9E096CCA1E44517700F0F617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E096CCD1E44517700F0F617 /* ChiTrain.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChiTrain.xcdatamodel; sourceTree = "<group>"; };
 		9E096CCF1E44517700F0F617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		9E096CE41E44517700F0F617 /* ChiTrainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChiTrainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiTrainUITests.swift; sourceTree = "<group>"; };
 		9E096CEA1E44517700F0F617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopChoiceViewController.swift; sourceTree = "<group>"; };
+		9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDictionaryViewController.swift; sourceTree = "<group>"; };
+		9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +106,13 @@
 			isa = PBXGroup;
 			children = (
 				9E096CC51E44517700F0F617 /* AppDelegate.swift */,
-				9E096CC71E44517700F0F617 /* ViewController.swift */,
+				9E096CC71E44517700F0F617 /* LineViewController.swift */,
+				9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */,
+				9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */,
 				9E096CC91E44517700F0F617 /* Main.storyboard */,
 				9E096CCF1E44517700F0F617 /* Assets.xcassets */,
 				9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */,
+				9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */,
 				9E096CD41E44517700F0F617 /* Info.plist */,
 				9E096CCC1E44517700F0F617 /* ChiTrain.xcdatamodeld */,
 			);
@@ -265,7 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E096CC81E44517700F0F617 /* ViewController.swift in Sources */,
+				9E72C8D21E4ECDE900B5A607 /* StopChoiceViewController.swift in Sources */,
+				9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */,
+				9E096CC81E44517700F0F617 /* LineViewController.swift in Sources */,
+				9E72C8D61E4EE2BB00B5A607 /* PredictionViewController.swift in Sources */,
 				9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */,
 				9E096CCE1E44517700F0F617 /* ChiTrain.xcdatamodeld in Sources */,
 			);
@@ -421,6 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;
 				INFOPLIST_FILE = ChiTrain/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMdevG.ChiTrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,6 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;
 				INFOPLIST_FILE = ChiTrain/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMdevG.ChiTrain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -518,6 +532,7 @@
 				9E096CEF1E44517700F0F617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9E096CF01E44517700F0F617 /* Build configuration list for PBXNativeTarget "ChiTrainTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +541,7 @@
 				9E096CF21E44517700F0F617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9E096CF31E44517700F0F617 /* Build configuration list for PBXNativeTarget "ChiTrainUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +550,7 @@
 				9E096CF51E44517700F0F617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
