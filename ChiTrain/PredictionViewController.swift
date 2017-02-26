@@ -9,7 +9,11 @@
 import UIKit
 import SwiftyJSON
 
+
+
+
 class PredictionViewController: UITableViewController {
+   
     
     var stationID : String!
     var colorRoute: String!
@@ -145,7 +149,7 @@ class PredictionViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
         
         for result in NorthBoundPreds{
             var arrival = result["arrT"].string
@@ -159,26 +163,19 @@ class PredictionViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
-        
         let now = dateFormatter.string(from: date)
         let currTime = dateFormatter.date(from: now) //Gets current local time formats and turns back into date object for subtraction
         
         var predTime = dateFormatter.date(from: key)
-        
         var waitTime = predTime?.timeIntervalSince(currTime!)
-        
         var intWaitTime = Int(waitTime!)
-        
         intWaitTime = intWaitTime/60
         
-        
         print("Predicted wait is  \(intWaitTime)")
-        
-        
-        
-        print("Date var is  \(now)")
 
-        cell.textLabel?.text = key
+        cell.arrivMins.text = String(intWaitTime)
+      
+        
         return cell
     }
     
@@ -188,4 +185,7 @@ class PredictionViewController: UITableViewController {
     }
     
 }
+
+
+
 
