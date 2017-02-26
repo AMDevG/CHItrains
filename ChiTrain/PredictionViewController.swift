@@ -40,30 +40,11 @@ class PredictionViewController: UITableViewController {
         if errorCode > 0{
             print("Error from Prediction system")
         }
-        
-       
         print(arrivalTimes[0])
-        
-        
     }
     
-    func parseReturnedJSON(_ retjson:[AnyObject]) -> Array<String>{
-        
-        var newArray = [String]()
-        
-        print("in Parser")
-        
-        for item in retjson{
-            
-            let str_arr = item as! String
-            
-            newArray.append(str_arr)
-            
-        }
-        
-        return newArray
-    }
     
-   
-
+    
+    
+    
 }
