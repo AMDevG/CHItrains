@@ -9,21 +9,18 @@
 import UIKit
 import SwiftyJSON
 
-
 class PredictionViewController: UITableViewController {
     
     var stationID : String!
     var colorRoute: String!
+    var routeFilter = String()
     
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
-    
-    var routeFilter = String()
+    var arrTNorth = [String]()
+    var arrTSouth = [String]()
 
     var predictionArray = [JSON]()
-    
-    
-
     
     // JSON VARIABLES
     
@@ -49,7 +46,6 @@ class PredictionViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if colorRoute! == "Red"{
             routeFilter = "Rd"}
         else if colorRoute! == "Green"{
@@ -66,8 +62,7 @@ class PredictionViewController: UITableViewController {
             routeFilter = "P"}
         else if colorRoute! == "Yellow"{
             routeFilter = "Y"}
-        
-        print("Route Filter is  \(routeFilter)")
+
         downloadPredictions()
     }
     override func didReceiveMemoryWarning() {
@@ -85,16 +80,8 @@ class PredictionViewController: UITableViewController {
         let object = JSON(readableJSON)
         let searchCriteria = object["ctatt"]
         let errorCode = searchCriteria["errCd"]
-        
         let arrivalTimes = searchCriteria["eta"]
-        
-        if errorCode > 0{
-            print("Error from Prediction system")
-        }
-       // print(arrivalTimes[0])
-        
-        //print(arrivalTimes)
-        
+    
         parseJSon(arrivalTimes)
     }
     
@@ -102,37 +89,80 @@ class PredictionViewController: UITableViewController {
     func parseJSon(_ jsonArray: JSON){
         
         var counter = jsonArray.count
-        
         for index in 0 ... counter{
-            
             var prediction = jsonArray[index]
-            
             if prediction["rt"].string == routeFilter{
-            
                 predictionArray.append(prediction)
             }
         }
         
         for pred in predictionArray{
-            
             switch pred["destNm"]{
+                case "95th/Dan Ryan":
+                    SouthBoundPreds.append(pred)
+                case "Forest Park":
+                    SouthBoundPreds.append(pred)
+                case "Loop":
+                    SouthBoundPreds.append(pred)
+                case "Skokie":
+                    SouthBoundPreds.append(pred)
+                case "Harlem/Lake":
+                    SouthBoundPreds.append(pred)
                 
+                case "Howard":
+                    NorthBoundPreds.append(pred)
+                case "O'Hare":
+                    NorthBoundPreds.append(pred)
+                case "Kimball":
+                    NorthBoundPreds.append(pred)
+                case "Linden":
+                    NorthBoundPreds.append(pred)
+                case "54th/Cermak":
+                    NorthBoundPreds.append(pred)
                 case "Midway":
-                
+                    NorthBoundPreds.append(pred)
+                case "Ashland/63rd":
+                    NorthBoundPreds.append(pred)
+                case "Cottage Grove":
+                    NorthBoundPreds.append(pred)
+                case "63rd Street":
                     NorthBoundPreds.append(pred)
             default:
-                print("No North Bound")
-                
+                print("Error")
             }
-            
             
         }
         
-        print("\(NorthBoundPreds)")
+        print("North Bound Trains are: \(NorthBoundPreds)")
+        print("This many North Bound Trains: \(NorthBoundPreds.count)")
         
-        
+        print("South Bound Trains are: \(SouthBoundPreds)")
+        print("This many South Bound Trains: \(SouthBoundPreds.count)")
+  
     }
     
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return NorthBoundPreds.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath)
+        
+        for result in NorthBoundPreds{
+            var arrival = result["arrT"].string
+            arrTNorth.append(arrival!)
+        }
+        
+       var key = arrTNorth[indexPath.row]
+        cell.textLabel?.text = key
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+    }
     
 }
 
