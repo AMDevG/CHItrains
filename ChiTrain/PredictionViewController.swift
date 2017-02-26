@@ -11,9 +11,6 @@ import SwiftyJSON
 
 class PredictionViewController: UITableViewController {
     
-    
-    
-    
     var stationID : String!
     var colorRoute: String!
     var routeFilter = String()
@@ -88,7 +85,6 @@ class PredictionViewController: UITableViewController {
         parseJSon(arrivalTimes)
     }
     
-
     func parseJSon(_ jsonArray: JSON){
         
         var counter = jsonArray.count
@@ -133,7 +129,6 @@ class PredictionViewController: UITableViewController {
             default:
                 print("Error")
             }
-            
         }
         
         print("North Bound Trains are: \(NorthBoundPreds)")
@@ -161,26 +156,28 @@ class PredictionViewController: UITableViewController {
         var key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
         
         let date = Date()
-       
-        
-        let calendar = NSCalendar.current
-    //    let hour = calendar.component(.hour, from: date as Date)
-    //    let minutes = calendar.component(.minute, from: date as Date)
-    //    print("\(minutes)")
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
         
         let now = dateFormatter.string(from: date)
-       
+        let currTime = dateFormatter.date(from: now) //Gets current local time formats and turns back into date object for subtraction
+        
+        var predTime = dateFormatter.date(from: key)
+        
+        var waitTime = predTime?.timeIntervalSince(currTime!)
+        
+        var intWaitTime = Int(waitTime!)
+        
+        intWaitTime = intWaitTime/60
+        
+        
+        print("Predicted wait is  \(intWaitTime)")
+        
+        
         
         print("Date var is  \(now)")
-        
-        //let curTime = dateFormatter.date(from: strDate)
-        
-       // print("\(curTime)")
-        
+
         cell.textLabel?.text = key
         return cell
     }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChiTrain/PredictionViewController.swift"
-            timestampString = "509780401.210851"
+            timestampString = "509781668.493685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "downloadPredictions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChiTrain/PredictionViewController.swift"
-            timestampString = "509780401.210851"
+            timestampString = "509781668.493685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "downloadPredictions()"
             landmarkType = "7">
          </BreakpointContent>
