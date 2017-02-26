@@ -15,8 +15,56 @@ class PredictionViewController: UITableViewController {
     var stationID : String!
     var colorRoute: String!
     
+    var routeFilter = String()
+
+    
+    var predictionArray = [JSON]()
+    
+
+    
+    // JSON VARIABLES
+    
+    var stpID = String ()
+    var staID = String ()
+    var stpDe = String ()
+    var isSch = String ()
+    var prdT = String ()
+    var rt = String ()
+    var isApp = String ()
+    var lat = String ()
+    var arrT = String ()
+    var heading = String ()
+    var isFlt = String ()
+    var tnDr = String ()
+    var rn = String ()
+    var lon = String ()
+    var staNm = String ()
+    var destNm = String ()
+    var isDly = String ()
+    var flags = String ()
+    var destSt = String ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if colorRoute! == "Red"{
+            routeFilter = "Rd"}
+        else if colorRoute! == "Green"{
+            routeFilter = "G"}
+        else if colorRoute! == "Pink"{
+            routeFilter = "Pink"}
+        else if colorRoute! == "Blue"{
+            routeFilter = "Blue"}
+        else if colorRoute! == "Brown"{
+            routeFilter = "Brn"}
+        else if colorRoute! == "Orange"{
+            routeFilter = "Org"}
+        else if colorRoute! == "Purple"{
+            routeFilter = "P"}
+        else if colorRoute! == "Yellow"{
+            routeFilter = "Y"}
+        
+        print("Route Filter is  \(routeFilter)")
         downloadPredictions()
     }
     override func didReceiveMemoryWarning() {
@@ -40,11 +88,41 @@ class PredictionViewController: UITableViewController {
         if errorCode > 0{
             print("Error from Prediction system")
         }
-        print(arrivalTimes[0])
+       // print(arrivalTimes[0])
+        
+        //print(arrivalTimes)
+        
+        parseJSon(arrivalTimes)
+    }
+    
+
+    func parseJSon(_ jsonArray: JSON){
+        
+        var counter = jsonArray.count
+        
+        for index in 0 ... counter{
+            
+            var prediction = jsonArray[index]
+            
+            if prediction["rt"].string == routeFilter{
+            
+         predictionArray.append(prediction)
+            
+            
+        }
+        }
+        
+    
+        
+        for result in predictionArray{
+            
+            print("\(result["arrT"])")
+        }
+        
+        
+        
     }
     
     
-    
-    
-    
 }
+
