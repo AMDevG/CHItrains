@@ -15,10 +15,13 @@ class PredictionViewController: UITableViewController {
     var stationID : String!
     var colorRoute: String!
     
+    var SouthBoundPreds = [JSON]()
+    var NorthBoundPreds = [JSON]()
+    
     var routeFilter = String()
 
-    
     var predictionArray = [JSON]()
+    
     
 
     
@@ -74,7 +77,7 @@ class PredictionViewController: UITableViewController {
     func downloadPredictions(){
         
         let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
-        let JsonOutput = "&max=25&outputType=JSON"
+        let JsonOutput = "&max=50&outputType=JSON"
         let searchURL = baseURL + stationID + JsonOutput
         let requestUrl = URL(string:searchURL)
         let jsonData = NSData(contentsOf: requestUrl!)
@@ -106,19 +109,26 @@ class PredictionViewController: UITableViewController {
             
             if prediction["rt"].string == routeFilter{
             
-         predictionArray.append(prediction)
+                predictionArray.append(prediction)
+            }
+        }
+        
+        for pred in predictionArray{
+            
+            switch pred["destNm"]{
+                
+                case "Midway":
+                
+                    NorthBoundPreds.append(pred)
+            default:
+                print("No North Bound")
+                
+            }
             
             
         }
-        }
         
-    
-        
-        for result in predictionArray{
-            
-            print("\(result["arrT"])")
-        }
-        
+        print("\(NorthBoundPreds)")
         
         
     }
