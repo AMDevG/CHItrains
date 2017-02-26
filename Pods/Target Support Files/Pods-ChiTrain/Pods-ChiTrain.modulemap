@@ -1,0 +1,6 @@
+framework module Pods_ChiTrain {
+  umbrella header "Pods-ChiTrain-umbrella.h"
+
+  export *
+  module * { export * }
+}

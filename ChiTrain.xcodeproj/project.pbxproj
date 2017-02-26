@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0848CDEF4CF69857C8045048 /* Pods_ChiTrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA39562A2B4BDFC2C8B157C /* Pods_ChiTrain.framework */; };
+		30D87CFDB3070D2C62CD4383 /* Pods_ChiTrainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219231B2841A520754D90719 /* Pods_ChiTrainTests.framework */; };
+		334E262401D98844DDBA1202 /* Pods_ChiTrainUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D7379EC4C230E2601635B1 /* Pods_ChiTrainUITests.framework */; };
 		9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC51E44517700F0F617 /* AppDelegate.swift */; };
 		9E096CC81E44517700F0F617 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC71E44517700F0F617 /* LineViewController.swift */; };
 		9E096CCB1E44517700F0F617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CC91E44517700F0F617 /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		219231B2841A520754D90719 /* Pods_ChiTrainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		786C9EE7B1A1C2DE7C42E9CB /* Pods-ChiTrainUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrainUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrainUITests/Pods-ChiTrainUITests.release.xcconfig"; sourceTree = "<group>"; };
+		92D7379EC4C230E2601635B1 /* Pods_ChiTrainUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrainUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CC21E44517700F0F617 /* ChiTrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChiTrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CC51E44517700F0F617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E096CC71E44517700F0F617 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +61,12 @@
 		9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopChoiceViewController.swift; sourceTree = "<group>"; };
 		9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDictionaryViewController.swift; sourceTree = "<group>"; };
 		9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
+		ABA39562A2B4BDFC2C8B157C /* Pods_ChiTrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3981601725E7A3DE2E4D33 /* Pods-ChiTrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrain/Pods-ChiTrain.debug.xcconfig"; sourceTree = "<group>"; };
+		E7F0B50CE100920A1DCCE6A6 /* Pods-ChiTrainUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrainUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrainUITests/Pods-ChiTrainUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E810993FE9CE7E47B8BA3E7D /* Pods-ChiTrainTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrainTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrainTests/Pods-ChiTrainTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F81FB723B115072CD2480C6B /* Pods-ChiTrain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrain.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrain/Pods-ChiTrain.release.xcconfig"; sourceTree = "<group>"; };
+		F9734F7045170143BBBCFB90 /* Pods-ChiTrainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrainTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrainTests/Pods-ChiTrainTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0848CDEF4CF69857C8045048 /* Pods_ChiTrain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D87CFDB3070D2C62CD4383 /* Pods_ChiTrainTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +90,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				334E262401D98844DDBA1202 /* Pods_ChiTrainUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8198E774259B8FC687C2E6C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD3981601725E7A3DE2E4D33 /* Pods-ChiTrain.debug.xcconfig */,
+				F81FB723B115072CD2480C6B /* Pods-ChiTrain.release.xcconfig */,
+				E810993FE9CE7E47B8BA3E7D /* Pods-ChiTrainTests.debug.xcconfig */,
+				F9734F7045170143BBBCFB90 /* Pods-ChiTrainTests.release.xcconfig */,
+				E7F0B50CE100920A1DCCE6A6 /* Pods-ChiTrainUITests.debug.xcconfig */,
+				786C9EE7B1A1C2DE7C42E9CB /* Pods-ChiTrainUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9E096CB91E44517600F0F617 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +117,8 @@
 				9E096CDC1E44517700F0F617 /* ChiTrainTests */,
 				9E096CE71E44517700F0F617 /* ChiTrainUITests */,
 				9E096CC31E44517700F0F617 /* Products */,
+				8198E774259B8FC687C2E6C1 /* Pods */,
+				FB7D0355BC107C09752EE5CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +167,16 @@
 			path = ChiTrainUITests;
 			sourceTree = "<group>";
 		};
+		FB7D0355BC107C09752EE5CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABA39562A2B4BDFC2C8B157C /* Pods_ChiTrain.framework */,
+				219231B2841A520754D90719 /* Pods_ChiTrainTests.framework */,
+				92D7379EC4C230E2601635B1 /* Pods_ChiTrainUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E096CED1E44517700F0F617 /* Build configuration list for PBXNativeTarget "ChiTrain" */;
 			buildPhases = (
+				A1B7DA1266AA1207E03B9733 /* [CP] Check Pods Manifest.lock */,
 				9E096CBE1E44517600F0F617 /* Sources */,
 				9E096CBF1E44517600F0F617 /* Frameworks */,
 				9E096CC01E44517600F0F617 /* Resources */,
+				AE6AFC6F8C5A433C354ADC51 /* [CP] Embed Pods Frameworks */,
+				961B3DBFCC4D4A03A893184C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E096CF01E44517700F0F617 /* Build configuration list for PBXNativeTarget "ChiTrainTests" */;
 			buildPhases = (
+				11C8C6DB5A0DB377D6961183 /* [CP] Check Pods Manifest.lock */,
 				9E096CD51E44517700F0F617 /* Sources */,
 				9E096CD61E44517700F0F617 /* Frameworks */,
 				9E096CD71E44517700F0F617 /* Resources */,
+				FA4A24728A4EEAE340DF868D /* [CP] Embed Pods Frameworks */,
+				0D56E03A7D2B06A6672B2B48 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,9 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E096CF31E44517700F0F617 /* Build configuration list for PBXNativeTarget "ChiTrainUITests" */;
 			buildPhases = (
+				C64AA8A3FE2A70E46EF7625C /* [CP] Check Pods Manifest.lock */,
 				9E096CE01E44517700F0F617 /* Sources */,
 				9E096CE11E44517700F0F617 /* Frameworks */,
 				9E096CE21E44517700F0F617 /* Resources */,
+				3024C7F8D75BE1D83E090D70 /* [CP] Embed Pods Frameworks */,
+				418B371457F1133C7F0F1C38 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +317,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D56E03A7D2B06A6672B2B48 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrainTests/Pods-ChiTrainTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		11C8C6DB5A0DB377D6961183 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3024C7F8D75BE1D83E090D70 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrainUITests/Pods-ChiTrainUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		418B371457F1133C7F0F1C38 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrainUITests/Pods-ChiTrainUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		961B3DBFCC4D4A03A893184C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrain/Pods-ChiTrain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1B7DA1266AA1207E03B9733 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE6AFC6F8C5A433C354ADC51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrain/Pods-ChiTrain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C64AA8A3FE2A70E46EF7625C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA4A24728A4EEAE340DF868D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChiTrainTests/Pods-ChiTrainTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E096CBE1E44517600F0F617 /* Sources */ = {
@@ -429,6 +616,7 @@
 		};
 		9E096CEE1E44517700F0F617 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD3981601725E7A3DE2E4D33 /* Pods-ChiTrain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;
@@ -443,6 +631,7 @@
 		};
 		9E096CEF1E44517700F0F617 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F81FB723B115072CD2480C6B /* Pods-ChiTrain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;
@@ -457,6 +646,7 @@
 		};
 		9E096CF11E44517700F0F617 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E810993FE9CE7E47B8BA3E7D /* Pods-ChiTrainTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -472,6 +662,7 @@
 		};
 		9E096CF21E44517700F0F617 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9734F7045170143BBBCFB90 /* Pods-ChiTrainTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +678,7 @@
 		};
 		9E096CF41E44517700F0F617 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7F0B50CE100920A1DCCE6A6 /* Pods-ChiTrainUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;
@@ -501,6 +693,7 @@
 		};
 		9E096CF51E44517700F0F617 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 786C9EE7B1A1C2DE7C42E9CB /* Pods-ChiTrainUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = GFZ65FH5YW;

@@ -11,6 +11,7 @@ import UIKit
 class StopChoiceViewController: UITableViewController {
 
     var lineSelection: String!
+    
     var stopNames = [String: String]()
     var selectedStation: String!
     @IBOutlet weak var stopLabel: UILabel!
@@ -71,6 +72,7 @@ class StopChoiceViewController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
         selectedStation = currentCell.textLabel!.text!
+        
         self.performSegue(withIdentifier: "showStopDetail", sender: self)
     }
     
@@ -79,6 +81,8 @@ class StopChoiceViewController: UITableViewController {
             let newViewController: PredictionViewController = segue.destination as! PredictionViewController
             var selectedID = stopNames[selectedStation]
             newViewController.stationID = selectedID
+            newViewController.colorRoute = lineSelection
+            
         }
     }
 }
