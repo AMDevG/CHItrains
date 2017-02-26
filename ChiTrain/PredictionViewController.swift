@@ -14,40 +14,14 @@ class PredictionViewController: UITableViewController {
     var stationID : String!
     var colorRoute: String!
     var routeFilter = String()
-    
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
-    var arrTNorth = [JSON]()
-    var arrTSouth = [JSON]()
-
     var predictionArray = [JSON]()
-    
-    // JSON VARIABLES
-    
-    var stpID = String ()
-    var staID = String ()
-    var stpDe = String ()
-    var isSch = String ()
-    var prdT = String ()
-    var rt = String ()
-    var isApp = String ()
-    var lat = String ()
-    var arrT = String ()
-    var heading = String ()
-    var isFlt = String ()
-    var tnDr = String ()
-    var rn = String ()
-    var lon = String ()
-    var staNm = String ()
-    var destNm = String ()
-    var isDly = String ()
-    var flags = String ()
-    var destSt = String ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if colorRoute! == "Red"{
-            routeFilter = "Rd"}
+            routeFilter = "Red"}
         else if colorRoute! == "Green"{
             routeFilter = "G"}
         else if colorRoute! == "Pink"{
@@ -80,6 +54,8 @@ class PredictionViewController: UITableViewController {
         let searchCriteria = object["ctatt"]
         let errorCode = searchCriteria["errCd"]
         let arrivalTimes = searchCriteria["eta"]
+        
+        print("  \(arrivalTimes)")
     
         parseJSon(arrivalTimes)
     }
@@ -92,7 +68,6 @@ class PredictionViewController: UITableViewController {
                 predictionArray.append(prediction)
                 }
             }
-        
         for pred in predictionArray{
             switch pred["destNm"]{
                 case "95th/Dan Ryan":
@@ -105,13 +80,13 @@ class PredictionViewController: UITableViewController {
                     SouthBoundPreds.append(pred)
                 case "Harlem/Lake":
                     SouthBoundPreds.append(pred)
+                case "Linden":
+                    SouthBoundPreds.append(pred)
                 case "Howard":
                     NorthBoundPreds.append(pred)
                 case "O'Hare":
                     NorthBoundPreds.append(pred)
                 case "Kimball":
-                    NorthBoundPreds.append(pred)
-                case "Linden":
                     NorthBoundPreds.append(pred)
                 case "54th/Cermak":
                     NorthBoundPreds.append(pred)
@@ -127,15 +102,7 @@ class PredictionViewController: UITableViewController {
                 print("Error")
             }
         }
-        
-        print("North Bound Trains are: \(NorthBoundPreds)")
-        print("This many North Bound Trains: \(NorthBoundPreds.count)")
-        
-        print("South Bound Trains are: \(SouthBoundPreds)")
-        print("This many South Bound Trains: \(SouthBoundPreds.count)")
-  
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NorthBoundPreds.count
@@ -143,16 +110,13 @@ class PredictionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
-        
         var currentDict = NorthBoundPreds[indexPath.row]
         var arriveTime = currentDict["arrT"].string
         arriveTime = calculate_arrival_time(arriveTime!)
-        
-        var destinationLabel = currentDict["destNm"].string
-        
+        let destinationLabel = currentDict["destNm"].string
+        print("Destination Label is  \(destinationLabel)")
         cell.arrivMins.text = arriveTime
         cell.destLabel.text = destinationLabel
-      
         return cell
     }
     
@@ -161,13 +125,9 @@ class PredictionViewController: UITableViewController {
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
     }
     
-    
-    
     func calculate_arrival_time(_ timestamp: String)-> String{
-    
-        var preFormattedkey = timestamp
-        var key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
-        
+        let preFormattedkey = timestamp
+        let key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
@@ -175,12 +135,11 @@ class PredictionViewController: UITableViewController {
         let now = dateFormatter.string(from: date)
         let currTime = dateFormatter.date(from: now) //Gets current local time formats and turns back into date object for subtraction
         
-        var predTime = dateFormatter.date(from: key)
-        var waitTime = predTime?.timeIntervalSince(currTime!)
+        let predTime = dateFormatter.date(from: key)
+        let waitTime = predTime?.timeIntervalSince(currTime!)
         var intWaitTime = Int(waitTime!)
         intWaitTime = intWaitTime/60
         let returnTime = String(intWaitTime)
-    
         return returnTime
     }
     
