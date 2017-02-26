@@ -25,41 +25,26 @@ class PredictionViewController: UITableViewController {
     
     func downloadPredictions(){
         
-        print("Calling downloadPredictions")
-        
-        //var results = [Dictionary]()
-        
         let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
         let JsonOutput = "&max=25&outputType=JSON"
-        
         let searchURL = baseURL + stationID + JsonOutput
-        
-        
-    
         let requestUrl = URL(string:searchURL)
+        let jsonData = NSData(contentsOf: requestUrl!)
+        let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
+        let object = JSON(readableJSON)
+        let searchCriteria = object["ctatt"]
+        let errorCode = searchCriteria["errCd"]
         
-        let request = URLRequest(url:requestUrl!)
+        let arrivalTimes = searchCriteria["eta"]
         
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
+        if errorCode > 0{
+            print("Error from Prediction system")
+        }
         
-        let task = session.dataTask(with: request) {
-            (data, response, error) in
-            if error == nil {
-                let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, AnyObject>
-               // let arrivalTimeArray = self.parseReturnedJSON(json as! [])
-                print("Back in download func")
-                
-                var newFeed = json["ctatt"] as! Dictionary<String, AnyObject>
-                var predictions = newFeed["eta"]
-                
-                print(predictions)
-                
-            }
+       
+        print(arrivalTimes[0])
         
         
-    }.resume()
-
     }
     
     func parseReturnedJSON(_ retjson:[AnyObject]) -> Array<String>{
