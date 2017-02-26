@@ -9,20 +9,16 @@
 import UIKit
 import SwiftyJSON
 
-
-
-
 class PredictionViewController: UITableViewController {
-   
-    
+
     var stationID : String!
     var colorRoute: String!
     var routeFilter = String()
     
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
-    var arrTNorth = [String]()
-    var arrTSouth = [String]()
+    var arrTNorth = [JSON]()
+    var arrTSouth = [JSON]()
 
     var predictionArray = [JSON]()
     
@@ -66,7 +62,7 @@ class PredictionViewController: UITableViewController {
             routeFilter = "P"}
         else if colorRoute! == "Yellow"{
             routeFilter = "Y"}
-
+        
         downloadPredictions()
     }
     override func didReceiveMemoryWarning() {
@@ -74,7 +70,6 @@ class PredictionViewController: UITableViewController {
     }
     
     func downloadPredictions(){
-        
         let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
         let JsonOutput = "&max=50&outputType=JSON"
         let searchURL = baseURL + stationID + JsonOutput
@@ -90,14 +85,13 @@ class PredictionViewController: UITableViewController {
     }
     
     func parseJSon(_ jsonArray: JSON){
-        
         var counter = jsonArray.count
         for index in 0 ... counter{
             var prediction = jsonArray[index]
             if prediction["rt"].string == routeFilter{
                 predictionArray.append(prediction)
+                }
             }
-        }
         
         for pred in predictionArray{
             switch pred["destNm"]{
@@ -111,7 +105,6 @@ class PredictionViewController: UITableViewController {
                     SouthBoundPreds.append(pred)
                 case "Harlem/Lake":
                     SouthBoundPreds.append(pred)
-                
                 case "Howard":
                     NorthBoundPreds.append(pred)
                 case "O'Hare":
@@ -151,12 +144,28 @@ class PredictionViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
         
-        for result in NorthBoundPreds{
-            var arrival = result["arrT"].string
-            arrTNorth.append(arrival!)
-        }
+        var currentDict = NorthBoundPreds[indexPath.row]
+        var arriveTime = currentDict["arrT"].string
+        arriveTime = calculate_arrival_time(arriveTime!)
         
-        var preFormattedkey = arrTNorth[indexPath.row]
+        var destinationLabel = currentDict["destNm"].string
+        
+        cell.arrivMins.text = arriveTime
+        cell.destLabel.text = destinationLabel
+      
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+    }
+    
+    
+    
+    func calculate_arrival_time(_ timestamp: String)-> String{
+    
+        var preFormattedkey = timestamp
         var key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
         
         let date = Date()
@@ -170,18 +179,9 @@ class PredictionViewController: UITableViewController {
         var waitTime = predTime?.timeIntervalSince(currTime!)
         var intWaitTime = Int(waitTime!)
         intWaitTime = intWaitTime/60
-        
-        print("Predicted wait is  \(intWaitTime)")
-
-        cell.arrivMins.text = String(intWaitTime)
-      
-        
-        return cell
-    }
+        let returnTime = String(intWaitTime)
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+        return returnTime
     }
     
 }
