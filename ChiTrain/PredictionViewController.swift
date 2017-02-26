@@ -11,6 +11,9 @@ import SwiftyJSON
 
 class PredictionViewController: UITableViewController {
     
+    
+    
+    
     var stationID : String!
     var colorRoute: String!
     var routeFilter = String()
@@ -154,7 +157,30 @@ class PredictionViewController: UITableViewController {
             arrTNorth.append(arrival!)
         }
         
-       var key = arrTNorth[indexPath.row]
+        var preFormattedkey = arrTNorth[indexPath.row]
+        var key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
+        
+        let date = Date()
+       
+        
+        let calendar = NSCalendar.current
+    //    let hour = calendar.component(.hour, from: date as Date)
+    //    let minutes = calendar.component(.minute, from: date as Date)
+    //    print("\(minutes)")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
+        dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
+        
+        let now = dateFormatter.string(from: date)
+       
+        
+        print("Date var is  \(now)")
+        
+        //let curTime = dateFormatter.date(from: strDate)
+        
+       // print("\(curTime)")
+        
         cell.textLabel?.text = key
         return cell
     }
