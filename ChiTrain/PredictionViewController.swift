@@ -17,6 +17,11 @@ class PredictionViewController: UITableViewController {
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
     var predictionArray = [JSON]()
+
+    
+    var AllPredictions = [[JSON]]()
+    
+    let sections = ["Northbound", "Southbound"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +59,7 @@ class PredictionViewController: UITableViewController {
         let searchCriteria = object["ctatt"]
         let errorCode = searchCriteria["errCd"]
         let arrivalTimes = searchCriteria["eta"]
-        
-        print("  \(arrivalTimes)")
-    
+
         parseJSon(arrivalTimes)
     }
     
@@ -101,23 +104,36 @@ class PredictionViewController: UITableViewController {
             default:
                 print("Error")
             }
+            
         }
+        AllPredictions.append(NorthBoundPreds)
+        AllPredictions.append(SouthBoundPreds)
+        
+       // print("AllPredictions has :  \(AllPredictions)")
+        
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NorthBoundPreds.count
-    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
-        var currentDict = NorthBoundPreds[indexPath.row]
+        var currentDict = AllPredictions[indexPath.section][indexPath.row]
+        
+        print("In Section now:  \(indexPath.section)")
+        
         var arriveTime = currentDict["arrT"].string
         arriveTime = calculate_arrival_time(arriveTime!)
         let destinationLabel = currentDict["destNm"].string
-        print("Destination Label is  \(destinationLabel)")
+        print("Destination Label is  \(destinationLabel!)")
         cell.arrivMins.text = arriveTime
         cell.destLabel.text = destinationLabel
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return AllPredictions[section].count
+        print("number of rows is  \(AllPredictions[section].count)")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -142,6 +158,23 @@ class PredictionViewController: UITableViewController {
         let returnTime = String(intWaitTime)
         return returnTime
     }
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+       // print("num of sections : \(self.sections.count)")
+        print("Number of sections is: \(sections.count)")
+        return sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section < sections.count {
+            return sections[section]
+        }
+        
+        return nil
+    }
+    
+    
     
 }
 
