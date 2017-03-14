@@ -14,9 +14,7 @@ class StopChoiceViewController: UITableViewController {
     var stopNames = [String: String]()
     var selectedStation: String!
     @IBOutlet weak var stopLabel: UILabel!
-    
 
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         if lineSelection! == "Red"{

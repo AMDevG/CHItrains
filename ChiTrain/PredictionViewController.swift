@@ -12,8 +12,6 @@ import CoreData
 
 class PredictionViewController: UITableViewController {
 
-    
-    
     var stationID : String!
     var stopString: String!
     var colorRoute: String!
@@ -21,48 +19,20 @@ class PredictionViewController: UITableViewController {
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
     var predictionArray = [JSON]()
+    var AllPredictions = [[JSON]]()
+    let sections = ["Northbound", "Southbound"]
     
- 
     @IBAction func addPush(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         let favorite = FavoriteStop(context: context)
         favorite.stopName = stopString
         favorite.stopColor = colorRoute
         favorite.stopID = stationID
-        
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
-        do {
-            try context.save()
-            print("Saved Context")
-            
-            
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-        // Create Entity Description
-        let entityDescription = NSEntityDescription.entity(forEntityName: "FavoriteStop", in: context)
-        // Configure Fetch Request
-        fetchRequest.entity = entityDescription
-        
-        do {
-            let result = try context.fetch(fetchRequest)
-            let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-    
-            
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-        }
-
+        do {try context.save()}
+        catch {fatalError("Failure to save context: \(error)")}
     }
-    
-    var AllPredictions = [[JSON]]()
-    
-    let sections = ["Northbound", "Southbound"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +52,6 @@ class PredictionViewController: UITableViewController {
             routeFilter = "P"}
         else if colorRoute! == "Yellow"{
             routeFilter = "Y"}
-        
         downloadPredictions()
     }
     override func didReceiveMemoryWarning() {
@@ -145,7 +114,6 @@ class PredictionViewController: UITableViewController {
             default:
                 print("Error")
             }
-            
         }
         AllPredictions.append(NorthBoundPreds)
         AllPredictions.append(SouthBoundPreds)
@@ -160,7 +128,6 @@ class PredictionViewController: UITableViewController {
         
         cell.arrivMins.text = arriveTime
         cell.destLabel.text = destinationLabel
-        
         
         if colorRoute! == "Red"{
             cell.colorLabel.backgroundColor = UIColor.red}
@@ -178,13 +145,11 @@ class PredictionViewController: UITableViewController {
             cell.colorLabel.backgroundColor = UIColor.purple}
         else if colorRoute! == "Yellow"{
             cell.colorLabel.backgroundColor = UIColor.yellow}
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AllPredictions[section].count
-        print("number of rows is  \(AllPredictions[section].count)")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -210,7 +175,6 @@ class PredictionViewController: UITableViewController {
         return returnTime
     }
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -221,9 +185,6 @@ class PredictionViewController: UITableViewController {
         }
         return nil
     }
-    
-    
-    
 }
 
 
