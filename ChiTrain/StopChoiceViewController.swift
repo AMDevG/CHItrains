@@ -81,6 +81,7 @@ class StopChoiceViewController: UITableViewController {
             let newViewController: PredictionViewController = segue.destination as! PredictionViewController
             var selectedID = stopNames[selectedStation]
             newViewController.stationID = selectedID
+            newViewController.stopString = selectedStation
             newViewController.colorRoute = lineSelection
         }
     }

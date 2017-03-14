@@ -15,6 +15,7 @@ class PredictionViewController: UITableViewController {
     
     
     var stationID : String!
+    var stopString: String!
     var colorRoute: String!
     var routeFilter = String()
     var SouthBoundPreds = [JSON]()
@@ -26,8 +27,7 @@ class PredictionViewController: UITableViewController {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let favorite = FavoriteStop(context: context)
-        
-        favorite.stopName = stationID
+        favorite.stopName = stopString
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
@@ -41,10 +41,8 @@ class PredictionViewController: UITableViewController {
         }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-        
         // Create Entity Description
         let entityDescription = NSEntityDescription.entity(forEntityName: "FavoriteStop", in: context)
-        
         // Configure Fetch Request
         fetchRequest.entity = entityDescription
         
