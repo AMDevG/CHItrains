@@ -32,6 +32,11 @@ class PredictionViewController: UITableViewController {
         
         do {try context.save()}
         catch {fatalError("Failure to save context: \(error)")}
+        
+        let alertController = UIAlertController(title: "Saved Stops", message: "Added to Favorites!", preferredStyle: .alert)
+        let acceptAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(acceptAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
