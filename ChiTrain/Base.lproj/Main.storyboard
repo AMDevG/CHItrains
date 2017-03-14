@@ -41,7 +41,13 @@
                             <outlet property="delegate" destination="TUO-Ax-sAw" id="bTw-rU-eXK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EUf-2N-AGK"/>
+                    <navigationItem key="navigationItem" id="wTC-Qt-rCq">
+                        <barButtonItem key="rightBarButtonItem" title="Saved Stops" id="IJF-5z-tAa">
+                            <connections>
+                                <segue destination="XqE-Mf-Ngn" kind="show" identifier="showSaved" id="8LE-aS-ef7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Urm-MI-6cj" kind="show" identifier="showStops" id="Mi2-vP-WJ6"/>
                     </connections>
@@ -49,6 +55,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EmL-L9-OSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1449" y="-283"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="5OY-gg-ZrQ">
+            <objects>
+                <tableViewController id="XqE-Mf-Ngn" customClass="SavedStopViewController" customModule="ChiTrain" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="L6F-uV-PKI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" rowHeight="85" id="Xn2-Dg-g7g">
+                                <rect key="frame" x="0.0" y="28" width="320" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xn2-Dg-g7g" id="0BU-5G-1vX">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XqE-Mf-Ngn" id="xRh-kk-HnJ"/>
+                            <outlet property="delegate" destination="XqE-Mf-Ngn" id="uFO-th-dCS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="J11-Dv-Odj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uz4-Dh-ilF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1417.5" y="497.53521126760563"/>
         </scene>
         <!--Stop Choice View Controller-->
         <scene sceneID="de0-qU-7lf">
@@ -73,15 +108,17 @@
                             <outlet property="delegate" destination="Urm-MI-6cj" id="fjV-M6-4RE"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="32C-Ym-vsM" kind="show" identifier="showStopDetail" id="miX-cb-utk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyz-9t-5Iz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2192" y="-282"/>
+            <point key="canvasLocation" x="2191.875" y="-282.04225352112678"/>
         </scene>
-        <!--Prediction View Controller-->
+        <!--Add to Favorites-->
         <scene sceneID="Cox-FC-U7Y">
             <objects>
                 <tableViewController id="32C-Ym-vsM" customClass="PredictionViewController" customModule="ChiTrain" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,6 +177,13 @@
                             <outlet property="delegate" destination="32C-Ym-vsM" id="WuQ-zu-aRH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Add to Favorites" id="NmL-jM-ZC3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eeJ-yt-plG">
+                            <connections>
+                                <action selector="addPush:" destination="32C-Ym-vsM" id="4wq-qC-r9H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6d5-eq-jgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

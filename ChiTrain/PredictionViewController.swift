@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import CoreData
 
 class PredictionViewController: UITableViewController {
 
@@ -19,7 +20,45 @@ class PredictionViewController: UITableViewController {
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
     var predictionArray = [JSON]()
+    
+ 
+    @IBAction func addPush(_ sender: Any) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let favorite = FavoriteStop(context: context)
+        
+        favorite.stopName = stationID
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        do {
+            try context.save()
+            print("Saved Context")
+            
+            
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        
+        // Create Entity Description
+        let entityDescription = NSEntityDescription.entity(forEntityName: "FavoriteStop", in: context)
+        
+        // Configure Fetch Request
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try context.fetch(fetchRequest)
+            let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+    
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
 
+    }
     
     var AllPredictions = [[JSON]]()
     
@@ -118,7 +157,7 @@ class PredictionViewController: UITableViewController {
         var arriveTime = currentDict["arrT"].string
         arriveTime = calculate_arrival_time(arriveTime!)
         let destinationLabel = currentDict["destNm"].string
-        print("Destination Label is  \(destinationLabel!)")
+        
         cell.arrivMins.text = arriveTime
         cell.destLabel.text = destinationLabel
         
@@ -173,8 +212,6 @@ class PredictionViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-       // print("num of sections : \(self.sections.count)")
-        print("Number of sections is: \(sections.count)")
         return sections.count
     }
     

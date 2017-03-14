@@ -8,11 +8,7 @@
 
 import UIKit
 
-/// 2.2.17 INSERT RGB CODES ATTACHED TO LINE TO SET BACKGROUND COLOR
-
-
 class LineViewController: UITableViewController {
-
     var selectedColor: String!
     let categories = ["Red","Brown", "Purple", "Orange", "Blue", "Green", "Pink", "Yellow"]
     

@@ -11,14 +11,14 @@ import UIKit
 class StopChoiceViewController: UITableViewController {
 
     var lineSelection: String!
-    
     var stopNames = [String: String]()
     var selectedStation: String!
     @IBOutlet weak var stopLabel: UILabel!
     
+
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if lineSelection! == "Red"{
             let DestViewController: StopDictionaryViewController = StopDictionaryViewController()
             stopNames = DestViewController.redStopIds
@@ -82,7 +82,6 @@ class StopChoiceViewController: UITableViewController {
             var selectedID = stopNames[selectedStation]
             newViewController.stationID = selectedID
             newViewController.colorRoute = lineSelection
-            
         }
     }
 }
