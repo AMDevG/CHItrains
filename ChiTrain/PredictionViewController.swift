@@ -28,6 +28,8 @@ class PredictionViewController: UITableViewController {
         
         let favorite = FavoriteStop(context: context)
         favorite.stopName = stopString
+        favorite.stopColor = colorRoute
+        favorite.stopID = stationID
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         

@@ -22,6 +22,7 @@
 		9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */; };
 		9E72C8D61E4EE2BB00B5A607 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */; };
 		9EB5E88B1E779F4500CB7C44 /* SavedStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5E88A1E779F4500CB7C44 /* SavedStopViewController.swift */; };
+		9EB5E88D1E77A62400CB7C44 /* SavedStopCellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5E88C1E77A62400CB7C44 /* SavedStopCellClass.swift */; };
 		9EC2CFFD1E62B33F007EE70F /* ArrivalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2CFFC1E62B33F007EE70F /* ArrivalViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDictionaryViewController.swift; sourceTree = "<group>"; };
 		9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
 		9EB5E88A1E779F4500CB7C44 /* SavedStopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedStopViewController.swift; sourceTree = "<group>"; };
+		9EB5E88C1E77A62400CB7C44 /* SavedStopCellClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedStopCellClass.swift; sourceTree = "<group>"; };
 		9EC2CFFC1E62B33F007EE70F /* ArrivalViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalViewCell.swift; sourceTree = "<group>"; };
 		ABA39562A2B4BDFC2C8B157C /* Pods_ChiTrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3981601725E7A3DE2E4D33 /* Pods-ChiTrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrain/Pods-ChiTrain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				9EB5E88A1E779F4500CB7C44 /* SavedStopViewController.swift */,
 				9E096CC91E44517700F0F617 /* Main.storyboard */,
 				9EC2CFFC1E62B33F007EE70F /* ArrivalViewCell.swift */,
+				9EB5E88C1E77A62400CB7C44 /* SavedStopCellClass.swift */,
 				9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */,
 				9E096CCF1E44517700F0F617 /* Assets.xcassets */,
 				9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */,
@@ -475,6 +478,7 @@
 				9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */,
 				9EC2CFFD1E62B33F007EE70F /* ArrivalViewCell.swift in Sources */,
 				9E096CCE1E44517700F0F617 /* ChiTrain.xcdatamodeld in Sources */,
+				9EB5E88D1E77A62400CB7C44 /* SavedStopCellClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

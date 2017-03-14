@@ -60,18 +60,38 @@
         <scene sceneID="5OY-gg-ZrQ">
             <objects>
                 <tableViewController id="XqE-Mf-Ngn" customClass="SavedStopViewController" customModule="ChiTrain" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="L6F-uV-PKI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="L6F-uV-PKI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" rowHeight="85" id="Xn2-Dg-g7g">
-                                <rect key="frame" x="0.0" y="28" width="320" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" rowHeight="70" id="Xn2-Dg-g7g" customClass="SavedStopCellClass" customModule="ChiTrain" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xn2-Dg-g7g" id="0BU-5G-1vX">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJc-DT-yqq">
+                                            <rect key="frame" x="108" y="8" width="198" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvG-Iw-K3F">
+                                            <rect key="frame" x="8" y="4" width="82" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="colorLabel" destination="rvG-Iw-K3F" id="dHo-cK-AN0"/>
+                                    <outlet property="nameLabel" destination="pJc-DT-yqq" id="IiU-DN-fIo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -80,10 +100,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="J11-Dv-Odj"/>
+                    <connections>
+                        <segue destination="32C-Ym-vsM" kind="show" identifier="showFaveDetail" id="dE5-dv-sYH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uz4-Dh-ilF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1417.5" y="497.53521126760563"/>
+            <point key="canvasLocation" x="1607" y="458"/>
         </scene>
         <!--Stop Choice View Controller-->
         <scene sceneID="de0-qU-7lf">
@@ -208,4 +231,7 @@
             <point key="canvasLocation" x="731.25" y="-283.0985915492958"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dE5-dv-sYH"/>
+    </inferredMetricsTieBreakers>
 </document>
