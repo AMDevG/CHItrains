@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class PredictionViewController: UITableViewController {
 
+    
+    
     var stationID : String!
     var colorRoute: String!
     var routeFilter = String()
@@ -108,28 +110,38 @@ class PredictionViewController: UITableViewController {
         }
         AllPredictions.append(NorthBoundPreds)
         AllPredictions.append(SouthBoundPreds)
-        
-       // print("AllPredictions has :  \(AllPredictions)")
-        
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
         var currentDict = AllPredictions[indexPath.section][indexPath.row]
-        
-        print("In Section now:  \(indexPath.section)")
-        
         var arriveTime = currentDict["arrT"].string
         arriveTime = calculate_arrival_time(arriveTime!)
         let destinationLabel = currentDict["destNm"].string
         print("Destination Label is  \(destinationLabel!)")
         cell.arrivMins.text = arriveTime
         cell.destLabel.text = destinationLabel
+        
+        
+        if colorRoute! == "Red"{
+            cell.colorLabel.backgroundColor = UIColor.red}
+        else if colorRoute! == "Green"{
+            cell.colorLabel.backgroundColor = UIColor.green}
+        else if colorRoute! == "Pink"{
+            cell.colorLabel.backgroundColor = UIColor.magenta}
+        else if colorRoute! == "Blue"{
+            cell.colorLabel.backgroundColor = UIColor.blue}
+        else if colorRoute! == "Brown"{
+            cell.colorLabel.backgroundColor = UIColor.brown}
+        else if colorRoute! == "Orange"{
+            cell.colorLabel.backgroundColor = UIColor.orange}
+        else if colorRoute! == "Purple"{
+            cell.colorLabel.backgroundColor = UIColor.purple}
+        else if colorRoute! == "Yellow"{
+            cell.colorLabel.backgroundColor = UIColor.yellow}
+        
         return cell
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AllPredictions[section].count
@@ -149,8 +161,8 @@ class PredictionViewController: UITableViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
         let now = dateFormatter.string(from: date)
-        let currTime = dateFormatter.date(from: now) //Gets current local time formats and turns back into date object for subtraction
-        
+        let currTime = dateFormatter.date(from: now)
+        //Gets current local time formats and turns back into date object for subtraction
         let predTime = dateFormatter.date(from: key)
         let waitTime = predTime?.timeIntervalSince(currTime!)
         var intWaitTime = Int(waitTime!)
@@ -170,7 +182,6 @@ class PredictionViewController: UITableViewController {
         if section < sections.count {
             return sections[section]
         }
-        
         return nil
     }
     

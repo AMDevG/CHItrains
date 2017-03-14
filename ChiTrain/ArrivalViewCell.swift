@@ -10,6 +10,7 @@ import UIKit
 
 class ArrivalViewCell: UITableViewCell {
 
+    @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var destLabel: UILabel!
     @IBOutlet weak var measurmentLable: UILabel!
     @IBOutlet weak var arrivMins: UILabel!
