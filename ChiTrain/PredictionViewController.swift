@@ -15,6 +15,7 @@ class PredictionViewController: UITableViewController {
     var stationID : String!
     var stopString: String!
     var colorRoute: String!
+    var returnTime = String()
     var routeFilter = String()
     var SouthBoundPreds = [JSON]()
     var NorthBoundPreds = [JSON]()
@@ -67,6 +68,8 @@ class PredictionViewController: UITableViewController {
         let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
         let JsonOutput = "&max=50&outputType=JSON"
         let searchURL = baseURL + stationID + JsonOutput
+        
+        print("Making call to  \(searchURL)")
         let requestUrl = URL(string:searchURL)
         let jsonData = NSData(contentsOf: requestUrl!)
         let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
@@ -87,6 +90,7 @@ class PredictionViewController: UITableViewController {
                 }
             }
         for pred in predictionArray{
+            print("\(pred)")
             switch pred["destNm"]{
                 case "95th/Dan Ryan":
                     SouthBoundPreds.append(pred)
@@ -176,7 +180,13 @@ class PredictionViewController: UITableViewController {
         let waitTime = predTime?.timeIntervalSince(currTime!)
         var intWaitTime = Int(waitTime!)
         intWaitTime = intWaitTime/60
-        let returnTime = String(intWaitTime)
+        
+        if intWaitTime == 0 || intWaitTime < 0{
+             returnTime = "Due"
+        }
+        else{
+             returnTime = String(intWaitTime)
+        }
         return returnTime
     }
     
