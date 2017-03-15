@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import SwiftyJSON
 import CoreData
 
@@ -69,9 +70,9 @@ class PredictionViewController: UITableViewController {
         let JsonOutput = "&max=50&outputType=JSON"
         let searchURL = baseURL + stationID + JsonOutput
         
-        print("Making call to  \(searchURL)")
         let requestUrl = URL(string:searchURL)
         let jsonData = NSData(contentsOf: requestUrl!)
+        
         let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
         let object = JSON(readableJSON)
         let searchCriteria = object["ctatt"]
@@ -173,13 +174,15 @@ class PredictionViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
+        
         let now = dateFormatter.string(from: date)
         let currTime = dateFormatter.date(from: now)
         //Gets current local time formats and turns back into date object for subtraction
         let predTime = dateFormatter.date(from: key)
         let waitTime = predTime?.timeIntervalSince(currTime!)
-        var intWaitTime = Int(waitTime!)
-        intWaitTime = intWaitTime/60
+        var doubWaitTime = Double(waitTime!)
+        doubWaitTime = round(doubWaitTime/60.0)
+        var intWaitTime = Int(doubWaitTime)
         
         if intWaitTime == 0 || intWaitTime < 0{
              returnTime = "Due"
