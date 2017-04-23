@@ -82,6 +82,8 @@ class PredictionViewController: UITableViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+      //// Delete records
     }
     
     func downloadPredictions(){
@@ -98,13 +100,18 @@ class PredictionViewController: UITableViewController {
             let errorCode = searchCriteria["errCd"]
             let arrivalTimes = searchCriteria["eta"]
         
+        //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
             parseJSon(arrivalTimes)
             
         
     }
     
     func parseJSon(_ jsonArray: JSON){
+        
+        // PARSES THROUGH ALL TRAINS AT THAT STATION
+        // APPENDS PREDICTIONS TO ARRAY IF TRAIN COLOR MATCHES SELECTED TRAIN LINE COLOR
         var counter = jsonArray.count
+        
         for index in 0 ... counter{
             var prediction = jsonArray[index]
             if prediction["rt"].string == routeFilter{
@@ -112,32 +119,29 @@ class PredictionViewController: UITableViewController {
                 }
             }
         
-        
         for pred in predictionArray{
-            print("\(pred)")
-            
-            // MAKE CLASS HERE
-            
             let prediction = Prediction()
-            
-            prediction.stpId = pred["stpId"].string!
-            prediction.staId = pred["staId"].string!
-            prediction.stpDe = pred["stpDe"].string!
-            prediction.isSch = pred["isSch"].string!
-            prediction.prdt = pred["prdt"].string!
-            prediction.rt = pred["rt"].string!
-            prediction.isApp = pred["isApp"].string!
-            prediction.lat = pred["lat"].string!
-            prediction.arrT = pred["arrT"].string!
-            prediction.isFlt = pred["isFlt"].string!
-            prediction.trDr = pred["trDr"].string!
-            prediction.rn = pred["rn"].string!
-            prediction.lon = pred["lon"].string!
-            prediction.staNm = pred["staNm"].string!
-            
-            prediction.arrivalTime = calculate_arrival_time(pred["arrT"].string!)
+                //CREATES PREDICTION OBJECTS AND APPENDS THEM TO ARRAY BASED ON DIRECTION (NORTH/SOUTH)
+                //NORTH/SOUTH ARRAYS ARE THEN APPENDED TO A MASTER ARRAY WITH ALL PREDICTIONS (BOTH NORTH AND SOUTH)
+                //DATA AVAILABLE IS FLIPPED TRUE
+        
+                prediction.stpId = pred["stpId"].string!
+                prediction.staId = pred["staId"].string!
+                prediction.stpDe = pred["stpDe"].string!
+                prediction.isSch = pred["isSch"].string!
+                prediction.prdt = pred["prdt"].string!
+                prediction.rt = pred["rt"].string!
+                prediction.isApp = pred["isApp"].string!
+           
+                prediction.arrT = pred["arrT"].string!
+                prediction.isFlt = pred["isFlt"].string!
+                prediction.trDr = pred["trDr"].string!
+                prediction.rn = pred["rn"].string!
+                prediction.staNm = pred["staNm"].string!
+                prediction.destNm = pred["destNm"].string!
+                //prediction.arrivalTime = calculate_arrival_time(pred["arrT"].string!)
     
-            switch pred["destNm"]{
+            switch prediction.destNm{
                 case "95th/Dan Ryan":
                     SouthBoundPreds.append(prediction)
                 case "Forest Park":
@@ -173,16 +177,27 @@ class PredictionViewController: UITableViewController {
         AllPredictions.append(NorthBoundPreds)
         AllPredictions.append(SouthBoundPreds)
         
-        self.data_available = true
+        let arrival_timequeue = DispatchQueue.global(qos: .background)
         
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
+        arrival_timequeue.async{
+            for prediction in self.AllPredictions{
+                for pred in prediction{
+                    pred.arrivalTime  = self.calculate_arrival_time(pred.arrT)
+                    print("Calculating in arrival time thread")
+                }
+            self.data_available = true
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+                }
+            }
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
       if(data_available){
+        
+        print("Data finally Loaded!")
             let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
             let currentPrediction = AllPredictions[indexPath.section][indexPath.row]
             cell.arrivMins.text = currentPrediction.arrivalTime
@@ -208,6 +223,7 @@ class PredictionViewController: UITableViewController {
     }
       
       else{
+        print("Data not loaded in tableview")
             let defaultCell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell", for: indexPath)
         return  defaultCell
         // RETURNS LOADING PLACEHOLDER CELL UNTIL DATA IS AVAILABLE
