@@ -20,25 +20,23 @@ class PredictionViewController: UITableViewController {
     
     class Prediction{
         
-        var stpId : String = ""     //UNIQUE ID; DICTIONARY KEY (EG. ID OF NORTHBOUND TRAIN AT FULLERTON)
-        var staId : String = ""     //UNIQUE ID TO STATION; DOESNT SPECIFY
-        var stpDe : String = "" // "SERVICE AT OUTER LOOP PLATFORM"
-        var isSch : String = ""
-        var prdt : String = ""  //PREDICTED DEPARTURE TIME
-        var rt : String = ""    // COLOR OF TRAIN RUN
-        var isApp : String = ""
-        var lat : String = "" // LAT COORDS OF STATION
-        var arrT : String = ""  //  PREDICTED ARRIVAL TIME
-        var isFlt : String = ""
-        var trDr : String = ""
-        var rn : String = ""
-        var lon : String = ""
-        var staNm : String = ""
-        var destNm : String = "" // I.E. KIMBALL, 95 DAN RYAN
-        var isDly : String = ""
-        var flags : String = "" // SET TO NULL UNLESS FLAGGED
-        var destSt : String = "" // DESTINATION STATION NUMBER
-        var arrivalTime : String = "" // COMPUTED FUNCTION
+        var stpId : String?    //UNIQUE ID; DICTIONARY KEY (EG. ID OF NORTHBOUND TRAIN AT FULLERTON)
+        var staId : String?     //UNIQUE ID TO STATION; DOESNT SPECIFY
+        var stpDe : String? // "SERVICE AT OUTER LOOP PLATFORM"
+        var isSch : String?
+        var prdt : String?  //PREDICTED DEPARTURE TIME
+        var rt : String?    // COLOR OF TRAIN RUN
+        var isApp : String?
+        var arrT : String?  //  PREDICTED ARRIVAL TIME
+        var isFlt : String?
+        var trDr : String?
+        var rn : String?
+        var staNm : String?
+        var destNm : String? // I.E. KIMBALL, 95 DAN RYAN
+        var isDly : String?
+        var flags : String? // SET TO NULL UNLESS FLAGGED
+        var destSt : String?// DESTINATION STATION NUMBER
+        var arrivalTime : String?// COMPUTED FUNCTION
     
     }
 
@@ -76,48 +74,69 @@ class PredictionViewController: UITableViewController {
             routeFilter = "P"}
         else if colorRoute! == "Yellow"{
             routeFilter = "Y"}
-        
         downloadPredictions()
         
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
-      //// Delete records
+        print("erasing objects received memory warn!")
+        
+        for array in AllPredictions{
+            for prediction in array{
+                prediction.stpId = nil
+                prediction.staId = nil
+                prediction.stpDe = nil
+                prediction.isSch = nil
+                prediction.prdt = nil
+                prediction.rt = nil
+                prediction.isApp = nil
+                prediction.arrT = nil
+                prediction.isFlt = nil
+                prediction.trDr = nil
+                prediction.rn = nil
+                prediction.staNm  = nil
+                prediction.destNm = nil
+                prediction.isDly = nil
+                prediction.flags = nil
+                prediction.destSt = nil
+                prediction.arrivalTime = nil
+            }
+        }
+        
+      
     }
     
     func downloadPredictions(){
-    
-            let searchURL = baseURL + self.stationID + JsonOutput
-            
-            guard let requestUrl = URL(string:searchURL)
-                else{return}
-            let jsonData = NSData(contentsOf: requestUrl)
-            
-            let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
-            let object = JSON(readableJSON)
-            let searchCriteria = object["ctatt"]
-            let errorCode = searchCriteria["errCd"]
-            let arrivalTimes = searchCriteria["eta"]
+        let download_thread = DispatchQueue.global(qos: .background)
         
-        //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
-            parseJSon(arrivalTimes)
-            
-        
+            download_thread.async {
+                print("In download thread")
+                let searchURL = baseURL + self.stationID + JsonOutput
+                guard let requestUrl = URL(string:searchURL)
+                    else{return}
+                let jsonData = NSData(contentsOf: requestUrl)
+                let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
+                let object = JSON(readableJSON)
+                let searchCriteria = object["ctatt"]
+                let errorCode = searchCriteria["errCd"]
+                let arrivalTimes = searchCriteria["eta"]
+            //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
+                self.parseJSon(arrivalTimes)
+            }
     }
     
     func parseJSon(_ jsonArray: JSON){
-        
         // PARSES THROUGH ALL TRAINS AT THAT STATION
         // APPENDS PREDICTIONS TO ARRAY IF TRAIN COLOR MATCHES SELECTED TRAIN LINE COLOR
         var counter = jsonArray.count
-        
         for index in 0 ... counter{
             var prediction = jsonArray[index]
             if prediction["rt"].string == routeFilter{
                 predictionArray.append(prediction)
-                }
             }
+        }
+        
         
         for pred in predictionArray{
             let prediction = Prediction()
@@ -139,9 +158,10 @@ class PredictionViewController: UITableViewController {
                 prediction.rn = pred["rn"].string!
                 prediction.staNm = pred["staNm"].string!
                 prediction.destNm = pred["destNm"].string!
-                //prediction.arrivalTime = calculate_arrival_time(pred["arrT"].string!)
+            
+               // prediction.arrivalTime = calculate_arrival_time(pred["arrT"].string!)
     
-            switch prediction.destNm{
+            switch prediction.destNm!{
                 case "95th/Dan Ryan":
                     SouthBoundPreds.append(prediction)
                 case "Forest Park":
@@ -174,35 +194,40 @@ class PredictionViewController: UITableViewController {
                 print("Error")
             }
         }
+        
+        
         AllPredictions.append(NorthBoundPreds)
         AllPredictions.append(SouthBoundPreds)
         
         let arrival_timequeue = DispatchQueue.global(qos: .background)
         
+        //Arrival time queue calculates arrival times async and updates main thread
+        //AFTER EACH CALCULATION
+        
         arrival_timequeue.async{
-            for prediction in self.AllPredictions{
-                for pred in prediction{
-                    pred.arrivalTime  = self.calculate_arrival_time(pred.arrT)
-                    print("Calculating in arrival time thread")
+            print("Calculating arrival time")
+            for predSet in self.AllPredictions{
+                for predict in predSet{
+                    predict.arrivalTime = self.calculate_arrival_time(predict.arrT!)
                 }
+            }
+            
             self.data_available = true
+           
             DispatchQueue.main.async{
                 self.tableView.reloadData()
-                }
+                print("updating main thread from arrivaltime")
             }
         }
     }
-    
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
       if(data_available){
-        
-        print("Data finally Loaded!")
             let cell = tableView.dequeueReusableCell(withIdentifier: "predictionCell", for: indexPath) as! ArrivalViewCell
             let currentPrediction = AllPredictions[indexPath.section][indexPath.row]
             cell.arrivMins.text = currentPrediction.arrivalTime
             cell.destLabel.text = currentPrediction.destNm
-        
                 if colorRoute! == "Red"{
                     cell.colorLabel.backgroundColor = UIColor.red}
                 else if colorRoute! == "Green"{
@@ -223,10 +248,8 @@ class PredictionViewController: UITableViewController {
     }
       
       else{
-        print("Data not loaded in tableview")
             let defaultCell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell", for: indexPath)
-        return  defaultCell
-        // RETURNS LOADING PLACEHOLDER CELL UNTIL DATA IS AVAILABLE
+        return defaultCell
         }
     }
 
@@ -256,7 +279,7 @@ class PredictionViewController: UITableViewController {
         let waitTime = predTime?.timeIntervalSince(currTime!)
         var doubWaitTime = Double(waitTime!)
         doubWaitTime = round(doubWaitTime/60.0)
-        var intWaitTime = Int(doubWaitTime)
+        let intWaitTime = Int(doubWaitTime)
         
             if intWaitTime == 0 || intWaitTime < 0{
                  returnTime = "Due"
