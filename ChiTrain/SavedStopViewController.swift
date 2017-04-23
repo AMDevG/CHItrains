@@ -71,11 +71,11 @@ class SavedStopViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as! SavedStopCellClass
+       let currentCell = tableView.cellForRow(at: indexPath!)! as! SavedStopCellClass
         let selectedStop = savedStops[(indexPath?.row)!]
         selectedStation = selectedStop.stopName!
-        //selectedID = (selectedStop.stopID?)!
-       // selectedColor = selectedStop.stopColor!
+        selectedID = selectedStop.stopID!
+        selectedColor = selectedStop.stopColor!
 
         self.performSegue(withIdentifier: "showFaveDetail", sender: self)
     }

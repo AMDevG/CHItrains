@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,15 +21,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chiTrain" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-1P-Agw">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-1P-Agw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chi train" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzd-6r-KFl">
-                                <rect key="frame" x="69" y="265" width="152" height="73"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="yIt-N9-SuK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="a CTA train tracker  by dev_g" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roD-8r-2GO">
+                                <rect key="frame" x="19" y="106" width="345" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chi Trains" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-by-dAE">
+                                <rect key="frame" x="26" y="28" width="322" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="44"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,9 +45,6 @@
                             <constraint firstItem="fgj-1P-Agw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EJQ-kC-Wm4"/>
                             <constraint firstItem="fgj-1P-Agw" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="ODE-xW-Ivp"/>
                             <constraint firstAttribute="trailing" secondItem="fgj-1P-Agw" secondAttribute="trailing" id="iKc-rR-gg6"/>
-                            <constraint firstItem="Mzd-6r-KFl" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="245" id="oqj-fd-Tfz"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Mzd-6r-KFl" secondAttribute="bottom" constant="329" id="ueI-SK-Aev"/>
-                            <constraint firstItem="Mzd-6r-KFl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="53" id="x1f-Je-I0I"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chiTrain" width="2250" height="2250"/>
+        <image name="launch" width="439" height="247"/>
     </resources>
 </document>

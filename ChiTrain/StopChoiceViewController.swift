@@ -61,7 +61,7 @@ class StopChoiceViewController: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stopCell", for: indexPath)
-        var key = Array(self.stopNames.keys)[indexPath.row]
+        let key = Array(self.stopNames.keys)[indexPath.row]
         cell.textLabel?.text = key
         return cell
     }
@@ -77,7 +77,7 @@ class StopChoiceViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStopDetail"{
             let newViewController: PredictionViewController = segue.destination as! PredictionViewController
-            var selectedID = stopNames[selectedStation]
+            let selectedID = stopNames[selectedStation]
             newViewController.stationID = selectedID
             newViewController.stopString = selectedStation
             newViewController.colorRoute = lineSelection

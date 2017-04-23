@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 import CoreData
+import SystemConfiguration
 
 let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
 let JsonOutput = "&max=50&outputType=JSON"
@@ -47,41 +48,53 @@ class PredictionViewController: UITableViewController {
     var returnTime = String()
     var routeFilter = String()
     
-    var data_available = false
-    
+    var arrivalTimes: JSON?
     var predictionArray = [JSON]()
     var SouthBoundPreds = [Prediction]()
     var NorthBoundPreds = [Prediction]()
     var AllPredictions = [[Prediction]]()
 
+    var data_available = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let connectionCheck = isConnectedToNetwork()
+            
+           if colorRoute! == "Red"{
+                routeFilter = "Red"}
+            else if colorRoute! == "Green"{
+                routeFilter = "G"}
+            else if colorRoute! == "Pink"{
+                routeFilter = "Pink"}
+            else if colorRoute! == "Blue"{
+                routeFilter = "Blue"}
+            else if colorRoute! == "Brown"{
+                routeFilter = "Brn"}
+            else if colorRoute! == "Orange"{
+                routeFilter = "Org"}
+            else if colorRoute! == "Purple"{
+                routeFilter = "P"}
+            else if colorRoute! == "Yellow"{
+                routeFilter = "Y"}
         
-       if colorRoute! == "Red"{
-            routeFilter = "Red"}
-        else if colorRoute! == "Green"{
-            routeFilter = "G"}
-        else if colorRoute! == "Pink"{
-            routeFilter = "Pink"}
-        else if colorRoute! == "Blue"{
-            routeFilter = "Blue"}
-        else if colorRoute! == "Brown"{
-            routeFilter = "Brn"}
-        else if colorRoute! == "Orange"{
-            routeFilter = "Org"}
-        else if colorRoute! == "Purple"{
-            routeFilter = "P"}
-        else if colorRoute! == "Yellow"{
-            routeFilter = "Y"}
-        downloadPredictions()
-        
+        if connectionCheck == false{
+            // CHECK FOR NETWORK CONNECTIVITY
+            // SEND BACK TO ROOT VIEW CONTROLLER IF NOT NO NETWORK CONNECTION AVAILABLE
+            
+            _ = navigationController?.popToRootViewController(animated: true)
+            let connectionAlert = UIAlertController(title: "No Network", message: "Check your network connection and try again", preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "OK!", style: .default, handler: nil)
+            connectionAlert.addAction(acceptAction)
+            present(connectionAlert, animated: true, completion: nil)
+        }
+        else{
+            downloadPredictions()
+            clearPredictionObjects()
+            }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        print("erasing objects received memory warn!")
-        
         for array in AllPredictions{
             for prediction in array{
                 prediction.stpId = nil
@@ -103,15 +116,14 @@ class PredictionViewController: UITableViewController {
                 prediction.arrivalTime = nil
             }
         }
-        
-      
     }
     
     func downloadPredictions(){
-        let download_thread = DispatchQueue.global(qos: .background)
         
+        //CHECK FOR INTERNET CONNECTION
+            let download_thread = DispatchQueue.global(qos: .background)
             download_thread.async {
-                print("In download thread")
+                
                 let searchURL = baseURL + self.stationID + JsonOutput
                 guard let requestUrl = URL(string:searchURL)
                     else{return}
@@ -119,17 +131,18 @@ class PredictionViewController: UITableViewController {
                 let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
                 let object = JSON(readableJSON)
                 let searchCriteria = object["ctatt"]
-                let errorCode = searchCriteria["errCd"]
                 let arrivalTimes = searchCriteria["eta"]
             //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
-                self.parseJSon(arrivalTimes)
+           
+                let parse_thread = DispatchQueue.global(qos: .background)
+                    parse_thread.async{
+                        self.parseJSon(arrivalTimes)
+                    }
             }
     }
     
     func parseJSon(_ jsonArray: JSON){
-        // PARSES THROUGH ALL TRAINS AT THAT STATION
-        // APPENDS PREDICTIONS TO ARRAY IF TRAIN COLOR MATCHES SELECTED TRAIN LINE COLOR
-        var counter = jsonArray.count
+        let counter = jsonArray.count
         for index in 0 ... counter{
             var prediction = jsonArray[index]
             if prediction["rt"].string == routeFilter{
@@ -137,8 +150,8 @@ class PredictionViewController: UITableViewController {
             }
         }
         
-        
         for pred in predictionArray{
+            
             let prediction = Prediction()
                 //CREATES PREDICTION OBJECTS AND APPENDS THEM TO ARRAY BASED ON DIRECTION (NORTH/SOUTH)
                 //NORTH/SOUTH ARRAYS ARE THEN APPENDED TO A MASTER ARRAY WITH ALL PREDICTIONS (BOTH NORTH AND SOUTH)
@@ -159,8 +172,6 @@ class PredictionViewController: UITableViewController {
                 prediction.staNm = pred["staNm"].string!
                 prediction.destNm = pred["destNm"].string!
             
-               // prediction.arrivalTime = calculate_arrival_time(pred["arrT"].string!)
-    
             switch prediction.destNm!{
                 case "95th/Dan Ryan":
                     SouthBoundPreds.append(prediction)
@@ -191,10 +202,9 @@ class PredictionViewController: UITableViewController {
                 case "63rd Street":
                     NorthBoundPreds.append(prediction)
             default:
-                print("Error")
+                print("Destination not found")
             }
         }
-        
         
         AllPredictions.append(NorthBoundPreds)
         AllPredictions.append(SouthBoundPreds)
@@ -202,25 +212,21 @@ class PredictionViewController: UITableViewController {
         let arrival_timequeue = DispatchQueue.global(qos: .background)
         
         //Arrival time queue calculates arrival times async and updates main thread
-        //AFTER EACH CALCULATION
+        //AFTER ALL PREDICTION OBJECTS HAVE BEEN UPDATED
         
         arrival_timequeue.async{
-            print("Calculating arrival time")
             for predSet in self.AllPredictions{
                 for predict in predSet{
                     predict.arrivalTime = self.calculate_arrival_time(predict.arrT!)
+                    
                 }
             }
-            
-            self.data_available = true
-           
             DispatchQueue.main.async{
+                self.data_available = true
                 self.tableView.reloadData()
-                print("updating main thread from arrivaltime")
             }
         }
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       if(data_available){
@@ -260,35 +266,8 @@ class PredictionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
     }
     
-    func calculate_arrival_time(_ timestamp: String)-> String{
-        let preFormattedkey = timestamp
-        let key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
-        
-        let now = dateFormatter.string(from: date)
-        let currTime = dateFormatter.date(from: now)
-        //Gets current local time formats and turns back into date object for subtraction
-        
-        let predTime = dateFormatter.date(from: key)
-        let waitTime = predTime?.timeIntervalSince(currTime!)
-        var doubWaitTime = Double(waitTime!)
-        doubWaitTime = round(doubWaitTime/60.0)
-        let intWaitTime = Int(doubWaitTime)
-        
-            if intWaitTime == 0 || intWaitTime < 0{
-                 returnTime = "Due"
-            }
-            else{
-                 returnTime = String(intWaitTime)
-            }
-        return returnTime
-    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -299,6 +278,30 @@ class PredictionViewController: UITableViewController {
             return sections[section]
         }
         return nil
+    }
+    
+    func clearPredictionObjects(){
+        for array in AllPredictions{
+            for prediction in array{
+                prediction.stpId = nil
+                prediction.staId = nil
+                prediction.stpDe = nil
+                prediction.isSch = nil
+                prediction.prdt = nil
+                prediction.rt = nil
+                prediction.isApp = nil
+                prediction.arrT = nil
+                prediction.isFlt = nil
+                prediction.trDr = nil
+                prediction.rn = nil
+                prediction.staNm  = nil
+                prediction.destNm = nil
+                prediction.isDly = nil
+                prediction.flags = nil
+                prediction.destSt = nil
+                prediction.arrivalTime = nil
+            }
+        }
     }
     
     @IBAction func addPush(_ sender: Any) {
@@ -322,6 +325,53 @@ class PredictionViewController: UITableViewController {
         let acceptAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(acceptAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func calculate_arrival_time(_ timestamp: String)-> String{
+        let preFormattedkey = timestamp
+        let key = preFormattedkey.replacingOccurrences(of: "T", with: "-")
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
+        dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
+        
+        let now = dateFormatter.string(from: date)
+        let currTime = dateFormatter.date(from: now)
+        //Gets current local time formats and turns back into date object for subtraction
+        
+        let predTime = dateFormatter.date(from: key)
+        let waitTime = predTime?.timeIntervalSince(currTime!)
+        var doubWaitTime = Double(waitTime!)
+        doubWaitTime = round(doubWaitTime/60.0)
+        let intWaitTime = Int(doubWaitTime)
+        
+        if intWaitTime == 0 || intWaitTime < 0{
+            returnTime = "Due"
+        }
+        else{
+            returnTime = String(intWaitTime)
+        }
+        return returnTime
+    }
+    
+    
+    func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        })
+    
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }
 
