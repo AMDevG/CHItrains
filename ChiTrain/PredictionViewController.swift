@@ -19,6 +19,12 @@ let sections = ["Northbound", "Southbound"]
 
 class PredictionViewController: UITableViewController {
     
+    enum parseError: Error{
+        case APIError
+        case ParsingError
+        
+    }
+    
     class Prediction{
         
         var stpId : String?    //UNIQUE ID; DICTIONARY KEY (EG. ID OF NORTHBOUND TRAIN AT FULLERTON)
@@ -40,7 +46,6 @@ class PredictionViewController: UITableViewController {
         var arrivalTime : String?// COMPUTED FUNCTION
     
     }
-
 
     var stationID: String!
     var stopString: String!
@@ -88,7 +93,10 @@ class PredictionViewController: UITableViewController {
             present(connectionAlert, animated: true, completion: nil)
         }
         else{
-            downloadPredictions()
+            
+            do{try downloadPredictions()}
+            catch{ parseError.APIError}
+            
             clearPredictionObjects()
             }
     }
@@ -119,7 +127,6 @@ class PredictionViewController: UITableViewController {
     }
     
     func downloadPredictions(){
-        
         //CHECK FOR INTERNET CONNECTION
             let download_thread = DispatchQueue.global(qos: .background)
             download_thread.async {
@@ -127,19 +134,24 @@ class PredictionViewController: UITableViewController {
                 let searchURL = baseURL + self.stationID + JsonOutput
                 guard let requestUrl = URL(string:searchURL)
                     else{return}
+                
+    
                 let jsonData = NSData(contentsOf: requestUrl)
-                let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
-                let object = JSON(readableJSON)
-                let searchCriteria = object["ctatt"]
-                let arrivalTimes = searchCriteria["eta"]
+                
+                    let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
+                    let object = JSON(readableJSON)
+                    let searchCriteria = object["ctatt"]
+                    let arrivalTimes = searchCriteria["eta"]
+        
+            
             //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
            
                 let parse_thread = DispatchQueue.global(qos: .background)
                     parse_thread.async{
                         self.parseJSon(arrivalTimes)
-                    }
+                }
             }
-    }
+        }
     
     func parseJSon(_ jsonArray: JSON){
         let counter = jsonArray.count
@@ -218,7 +230,6 @@ class PredictionViewController: UITableViewController {
             for predSet in self.AllPredictions{
                 for predict in predSet{
                     predict.arrivalTime = self.calculate_arrival_time(predict.arrT!)
-                    
                 }
             }
             DispatchQueue.main.async{
