@@ -22,7 +22,6 @@ class PredictionViewController: UITableViewController {
     enum parseError: Error{
         case APIError
         case ParsingError
-        
     }
     
     class Prediction{
@@ -143,7 +142,6 @@ class PredictionViewController: UITableViewController {
                     let searchCriteria = object["ctatt"]
                     let arrivalTimes = searchCriteria["eta"]
         
-            
             //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
            
                 let parse_thread = DispatchQueue.global(qos: .background)

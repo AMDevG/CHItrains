@@ -71,7 +71,6 @@ class StopChoiceViewController: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stopCell", for: indexPath)
-        //let key = Array(self.stopNames.keys)[indexPath.row]
         let key = sortedNames[indexPath.row]
         cell.textLabel?.text = key
         return cell

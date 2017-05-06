@@ -21,30 +21,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-1P-Agw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="a CTA train tracker  by dev_g" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roD-8r-2GO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="a CTA train tracker  by dev_g" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roD-8r-2GO">
                                 <rect key="frame" x="19" y="106" width="345" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chi Trains" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-by-dAE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chi Trains" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-by-dAE">
                                 <rect key="frame" x="26" y="28" width="322" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="44"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-1P-Agw">
+                                <rect key="frame" x="4" y="198" width="375" height="271"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fgj-1P-Agw" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="DyK-gK-MYY"/>
-                            <constraint firstItem="fgj-1P-Agw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EJQ-kC-Wm4"/>
-                            <constraint firstItem="fgj-1P-Agw" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="ODE-xW-Ivp"/>
-                            <constraint firstAttribute="trailing" secondItem="fgj-1P-Agw" secondAttribute="trailing" id="iKc-rR-gg6"/>
+                            <constraint firstItem="fgj-1P-Agw" firstAttribute="top" secondItem="roD-8r-2GO" secondAttribute="bottom" constant="38" id="1fm-VY-Zbi"/>
+                            <constraint firstItem="ycK-by-dAE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="OKs-5R-eDd"/>
+                            <constraint firstItem="roD-8r-2GO" firstAttribute="top" secondItem="ycK-by-dAE" secondAttribute="bottom" constant="-11" id="ZG1-Vn-Qrg"/>
+                            <constraint firstItem="fgj-1P-Agw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="q8s-3f-XNm"/>
+                            <constraint firstItem="ycK-by-dAE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qYg-nr-hHT"/>
+                            <constraint firstItem="roD-8r-2GO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uiQ-0v-cHz"/>
                         </constraints>
                     </view>
                 </viewController>
