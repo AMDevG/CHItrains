@@ -11,6 +11,8 @@ import Foundation
 import SwiftyJSON
 import CoreData
 import SystemConfiguration
+import StoreKit
+
 
 let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
 let JsonOutput = "&max=50&outputType=JSON"
@@ -97,6 +99,7 @@ class PredictionViewController: UITableViewController {
             catch{ parseError.APIError}
             
             clearPredictionObjects()
+            SKStoreReviewController.requestReview()
             }
     }
     
@@ -233,6 +236,7 @@ class PredictionViewController: UITableViewController {
             DispatchQueue.main.async{
                 self.data_available = true
                 self.tableView.reloadData()
+                
             }
         }
     }

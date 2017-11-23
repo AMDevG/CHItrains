@@ -10,6 +10,7 @@
 		0848CDEF4CF69857C8045048 /* Pods_ChiTrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA39562A2B4BDFC2C8B157C /* Pods_ChiTrain.framework */; };
 		30D87CFDB3070D2C62CD4383 /* Pods_ChiTrainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219231B2841A520754D90719 /* Pods_ChiTrainTests.framework */; };
 		334E262401D98844DDBA1202 /* Pods_ChiTrainUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D7379EC4C230E2601635B1 /* Pods_ChiTrainUITests.framework */; };
+		9E019BCC1EC2CC05008ED77E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E019BCB1EC2CC05008ED77E /* MapViewController.swift */; };
 		9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC51E44517700F0F617 /* AppDelegate.swift */; };
 		9E096CC81E44517700F0F617 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CC71E44517700F0F617 /* LineViewController.swift */; };
 		9E096CCB1E44517700F0F617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CC91E44517700F0F617 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 		9E096CD31E44517700F0F617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */; };
 		9E096CDE1E44517700F0F617 /* ChiTrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CDD1E44517700F0F617 /* ChiTrainTests.swift */; };
 		9E096CE91E44517700F0F617 /* ChiTrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */; };
+		9E1B51DF1F68E260005BDBD7 /* StoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B51DE1F68E260005BDBD7 /* StoreReview.swift */; };
 		9E72C8D21E4ECDE900B5A607 /* StopChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */; };
 		9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */; };
 		9E72C8D61E4EE2BB00B5A607 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */; };
@@ -47,6 +49,7 @@
 		219231B2841A520754D90719 /* Pods_ChiTrainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C9EE7B1A1C2DE7C42E9CB /* Pods-ChiTrainUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiTrainUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChiTrainUITests/Pods-ChiTrainUITests.release.xcconfig"; sourceTree = "<group>"; };
 		92D7379EC4C230E2601635B1 /* Pods_ChiTrainUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiTrainUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E019BCB1EC2CC05008ED77E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9E096CC21E44517700F0F617 /* ChiTrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChiTrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CC51E44517700F0F617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E096CC71E44517700F0F617 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		9E096CE41E44517700F0F617 /* ChiTrainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChiTrainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiTrainUITests.swift; sourceTree = "<group>"; };
 		9E096CEA1E44517700F0F617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E1B51DE1F68E260005BDBD7 /* StoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReview.swift; sourceTree = "<group>"; };
 		9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopChoiceViewController.swift; sourceTree = "<group>"; };
 		9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDictionaryViewController.swift; sourceTree = "<group>"; };
 		9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -145,10 +149,12 @@
 				9E096CC71E44517700F0F617 /* LineViewController.swift */,
 				9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */,
 				9E72C8D51E4EE2BB00B5A607 /* PredictionViewController.swift */,
+				9E1B51DE1F68E260005BDBD7 /* StoreReview.swift */,
 				9EB5E88A1E779F4500CB7C44 /* SavedStopViewController.swift */,
 				9EC2CFFC1E62B33F007EE70F /* ArrivalViewCell.swift */,
 				9EB5E88C1E77A62400CB7C44 /* SavedStopCellClass.swift */,
 				9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */,
+				9E019BCB1EC2CC05008ED77E /* MapViewController.swift */,
 				9E096CC91E44517700F0F617 /* Main.storyboard */,
 				9E096CCF1E44517700F0F617 /* Assets.xcassets */,
 				9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */,
@@ -473,9 +479,11 @@
 				9EB5E88B1E779F4500CB7C44 /* SavedStopViewController.swift in Sources */,
 				9E72C8D21E4ECDE900B5A607 /* StopChoiceViewController.swift in Sources */,
 				9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */,
+				9E019BCC1EC2CC05008ED77E /* MapViewController.swift in Sources */,
 				9E096CC81E44517700F0F617 /* LineViewController.swift in Sources */,
 				9E72C8D61E4EE2BB00B5A607 /* PredictionViewController.swift in Sources */,
 				9E096CC61E44517700F0F617 /* AppDelegate.swift in Sources */,
+				9E1B51DF1F68E260005BDBD7 /* StoreReview.swift in Sources */,
 				9EC2CFFD1E62B33F007EE70F /* ArrivalViewCell.swift in Sources */,
 				9E096CCE1E44517700F0F617 /* ChiTrain.xcdatamodeld in Sources */,
 				9EB5E88D1E77A62400CB7C44 /* SavedStopCellClass.swift in Sources */,
