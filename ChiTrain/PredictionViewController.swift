@@ -16,6 +16,7 @@ import StoreKit
 
 let baseURL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=2ef142eb986f42cb9b087645f68e65d2&mapid="
 let JsonOutput = "&max=50&outputType=JSON"
+let trainColor = "&rt="
 
 let sections = ["Northbound", "Southbound"]
 
@@ -99,7 +100,6 @@ class PredictionViewController: UITableViewController {
             catch{ parseError.APIError}
             
             clearPredictionObjects()
-            SKStoreReviewController.requestReview()
             }
     }
     
@@ -133,17 +133,16 @@ class PredictionViewController: UITableViewController {
             let download_thread = DispatchQueue.global(qos: .background)
             download_thread.async {
                 
-                let searchURL = baseURL + self.stationID + JsonOutput
+                let searchURL = baseURL + self.stationID + JsonOutput + "&rt=" + self.routeFilter
                 guard let requestUrl = URL(string:searchURL)
                     else{return}
                 
-    
                 let jsonData = NSData(contentsOf: requestUrl)
                 
-                    let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
-                    let object = JSON(readableJSON)
-                    let searchCriteria = object["ctatt"]
-                    let arrivalTimes = searchCriteria["eta"]
+                let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
+                let object = JSON(readableJSON)
+                let searchCriteria = object["ctatt"]
+                let arrivalTimes = searchCriteria["eta"]
         
             //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
            
@@ -158,9 +157,7 @@ class PredictionViewController: UITableViewController {
         let counter = jsonArray.count
         for index in 0 ... counter{
             var prediction = jsonArray[index]
-            if prediction["rt"].string == routeFilter{
-                predictionArray.append(prediction)
-            }
+            predictionArray.append(prediction)
         }
         
         for pred in predictionArray{

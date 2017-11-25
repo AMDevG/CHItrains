@@ -19,6 +19,7 @@
 		9E096CD31E44517700F0F617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E096CD11E44517700F0F617 /* LaunchScreen.storyboard */; };
 		9E096CDE1E44517700F0F617 /* ChiTrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CDD1E44517700F0F617 /* ChiTrainTests.swift */; };
 		9E096CE91E44517700F0F617 /* ChiTrainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */; };
+		9E12EDF91FC9DAAD007D3F84 /* StationGeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12EDF81FC9DAAD007D3F84 /* StationGeoData.swift */; };
 		9E1B51DF1F68E260005BDBD7 /* StoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B51DE1F68E260005BDBD7 /* StoreReview.swift */; };
 		9E72C8D21E4ECDE900B5A607 /* StopChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */; };
 		9E72C8D41E4EDB4D00B5A607 /* StopDictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */; };
@@ -64,6 +65,7 @@
 		9E096CE41E44517700F0F617 /* ChiTrainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChiTrainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E096CE81E44517700F0F617 /* ChiTrainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiTrainUITests.swift; sourceTree = "<group>"; };
 		9E096CEA1E44517700F0F617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E12EDF81FC9DAAD007D3F84 /* StationGeoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationGeoData.swift; sourceTree = "<group>"; };
 		9E1B51DE1F68E260005BDBD7 /* StoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReview.swift; sourceTree = "<group>"; };
 		9E72C8D11E4ECDE900B5A607 /* StopChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopChoiceViewController.swift; sourceTree = "<group>"; };
 		9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDictionaryViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				9EC2CFFC1E62B33F007EE70F /* ArrivalViewCell.swift */,
 				9EB5E88C1E77A62400CB7C44 /* SavedStopCellClass.swift */,
 				9E72C8D31E4EDB4D00B5A607 /* StopDictionaryViewController.swift */,
+				9E12EDF81FC9DAAD007D3F84 /* StationGeoData.swift */,
 				9E019BCB1EC2CC05008ED77E /* MapViewController.swift */,
 				9E096CC91E44517700F0F617 /* Main.storyboard */,
 				9E096CCF1E44517700F0F617 /* Assets.xcassets */,
@@ -486,6 +489,7 @@
 				9E1B51DF1F68E260005BDBD7 /* StoreReview.swift in Sources */,
 				9EC2CFFD1E62B33F007EE70F /* ArrivalViewCell.swift in Sources */,
 				9E096CCE1E44517700F0F617 /* ChiTrain.xcdatamodeld in Sources */,
+				9E12EDF91FC9DAAD007D3F84 /* StationGeoData.swift in Sources */,
 				9EB5E88D1E77A62400CB7C44 /* SavedStopCellClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

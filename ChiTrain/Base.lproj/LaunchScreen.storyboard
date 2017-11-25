@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,31 +21,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="a CTA train tracker  by dev_g" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roD-8r-2GO">
-                                <rect key="frame" x="19" y="106" width="345" height="54"/>
-                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chi Trains" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-by-dAE">
-                                <rect key="frame" x="26" y="28" width="322" height="89"/>
-                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="44"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ChiTrains Launch" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-1P-Agw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chitown" translatesAutoresizingMaskIntoConstraints="NO" id="kpf-RH-Jo3">
+                                <rect key="frame" x="-452" y="20" width="1284" height="663"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="fgj-1P-Agw" firstAttribute="top" secondItem="roD-8r-2GO" secondAttribute="bottom" constant="38" id="1fm-VY-Zbi"/>
-                            <constraint firstItem="ycK-by-dAE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="OKs-5R-eDd"/>
-                            <constraint firstItem="roD-8r-2GO" firstAttribute="top" secondItem="ycK-by-dAE" secondAttribute="bottom" constant="-11" id="ZG1-Vn-Qrg"/>
-                            <constraint firstItem="fgj-1P-Agw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="q8s-3f-XNm"/>
-                            <constraint firstItem="ycK-by-dAE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qYg-nr-hHT"/>
-                            <constraint firstItem="roD-8r-2GO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uiQ-0v-cHz"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ChiTrains Launch" width="750" height="1334"/>
+        <image name="chitown" width="375" height="667"/>
     </resources>
 </document>
