@@ -59,7 +59,6 @@ class StopChoiceViewController: UITableViewController {
             stopNames = DestViewController.yellowStopIds
              sortedNames = Array(DestViewController.yellowStopIds.keys).sorted{ $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
         }
-        print("Got stop names \(stopNames)")
     }
     
     override func didReceiveMemoryWarning() {

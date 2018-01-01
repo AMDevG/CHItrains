@@ -134,7 +134,6 @@ class PredictionViewController: UITableViewController {
             let download_thread = DispatchQueue.global(qos: .background)
             download_thread.async {
                 
-                print("Running in download thread")
                 let searchURL = baseURL + self.stationID + JsonOutput + "&rt=" + self.routeFilter
                 guard let requestUrl = URL(string:searchURL)
                     else{return}
@@ -158,16 +157,14 @@ class PredictionViewController: UITableViewController {
         }
     
     func parseJSon(_ jsonArray: JSON){
-        let counter = jsonArray.count - 1
+        let counter = jsonArray.count
         for index in 0 ... counter{
             var prediction = jsonArray[index]
-            predictionArray.append(prediction)
+            if(prediction != nil){
+                predictionArray.append(prediction)}
         }
-        
-        print("Pred array is size: \(predictionArray.count)")
+    
         for pred in predictionArray{
-            
-            print("Pred is \(pred)")
             
             let prediction = Prediction()
                 //CREATES PREDICTION OBJECTS AND APPENDS THEM TO ARRAY BASED ON DIRECTION (NORTH/SOUTH)
