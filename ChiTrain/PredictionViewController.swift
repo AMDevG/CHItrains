@@ -130,19 +130,23 @@ class PredictionViewController: UITableViewController {
     
     func downloadPredictions(){
         //CHECK FOR INTERNET CONNECTION
+        
             let download_thread = DispatchQueue.global(qos: .background)
             download_thread.async {
                 
+                print("Running in download thread")
                 let searchURL = baseURL + self.stationID + JsonOutput + "&rt=" + self.routeFilter
                 guard let requestUrl = URL(string:searchURL)
                     else{return}
                 
                 let jsonData = NSData(contentsOf: requestUrl)
                 
+                
                 let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
                 let object = JSON(readableJSON)
                 let searchCriteria = object["ctatt"]
                 let arrivalTimes = searchCriteria["eta"]
+                
         
             //PASSES DICTIONARY WITH KEY "ETA" TO PARSE FUNCTION; DATA TYPE BEING PASSED IS JSON
            
@@ -154,13 +158,16 @@ class PredictionViewController: UITableViewController {
         }
     
     func parseJSon(_ jsonArray: JSON){
-        let counter = jsonArray.count
+        let counter = jsonArray.count - 1
         for index in 0 ... counter{
             var prediction = jsonArray[index]
             predictionArray.append(prediction)
         }
         
+        print("Pred array is size: \(predictionArray.count)")
         for pred in predictionArray{
+            
+            print("Pred is \(pred)")
             
             let prediction = Prediction()
                 //CREATES PREDICTION OBJECTS AND APPENDS THEM TO ARRAY BASED ON DIRECTION (NORTH/SOUTH)
