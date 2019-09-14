@@ -56,7 +56,7 @@ class PredictionViewController: UITableViewController {
     var routeFilter = String()
     
     var arrivalTimes: JSON?
-    var predictionArray = [JSON]()
+    var predictionArray = [IXON]()
     var SouthBoundPreds = [Prediction]()
     var NorthBoundPreds = [Prediction]()
     var AllPredictions = [[Prediction]]()
@@ -142,7 +142,7 @@ class PredictionViewController: UITableViewController {
                 
                 
                 let readableJSON = try! JSONSerialization.jsonObject(with: jsonData! as Data, options: []) as! [String:AnyObject]
-                let object = JSON(readableJSON)
+                let object = IXON(readableJSON)
                 let searchCriteria = object["ctatt"]
                 let arrivalTimes = searchCriteria["eta"]
                 
@@ -279,7 +279,7 @@ class PredictionViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
+        _ = tableView.indexPathForSelectedRow
     }
     
     
@@ -347,7 +347,7 @@ class PredictionViewController: UITableViewController {
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(name: "CST") as TimeZone!
+        dateFormatter.timeZone = NSTimeZone(name: "CST")! as TimeZone
         
         let now = dateFormatter.string(from: date)
         let currTime = dateFormatter.date(from: now)

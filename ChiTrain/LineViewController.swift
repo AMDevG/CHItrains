@@ -31,7 +31,7 @@ class LineViewController: UITableViewController {
             [NSLayoutConstraint(item: bannerView,
                                 attribute: .bottom,
                                 relatedBy: .equal,
-                                toItem: bottomLayoutGuide,
+                                toItem: view.safeAreaLayoutGuide.bottomAnchor ,
                                 attribute: .top,
                                 multiplier: 1,
                                 constant: 0),
